@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-ynb$*cb-z7+005af^(tlf88rdc90&jgftw6fx0=2-39a7kb-4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True ## CAMBIAR A FALSE ANTES DE SUBIR A AWS
+DEBUG = False ## CAMBIAR A FALSE ANTES DE SUBIR A AWS
 
 ALLOWED_HOSTS = ['18.219.82.168','localhost', '127.0.0.1']
 
