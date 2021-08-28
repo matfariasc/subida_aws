@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Delete User{% endblock title %}
+{% block content %}
+<h3>Estas Seguro que deseas borrar el usuario ?</h3>
+<form action="" method="post">
+    <div class="col text-center mt-2">
+        <button class="w-10 btn btn-primary btn-lg" type="submit"><a href="{% url "dashboard" %}" class="text-light text-decoration-none">Cancelar</a></button>
+        {% csrf_token %}
+            <button class="w-10 btn btn-danger btn-lg" type="submit">borrar</button>
+    
+        
+    </div>
+ </form>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}User Dashboard{% endblock title %}
+{% block content %}
+<h3>All Users</h3>
+<div>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>created_at</th>
+            <th>user_level</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td><a href="{% url 'user_view' user.id %}">{{ user.first_name }} {{ user.last_name }}</a></td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>{{ user.user_level.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

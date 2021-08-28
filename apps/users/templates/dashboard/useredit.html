@@ -1,0 +1,87 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Edit Profile{% endblock title %}
+{% block content %}
+<h3>Edit profile</h3>
+<div class="row g-2 pt-2">
+    <div class="col-lg-4 order-md-last border m-2 p-2">
+        <h2>Change Password</h2>
+        {% if messages %}
+        {% for message in messages %}
+            {% if 'password' in message.tags %}
+        <ul class="messages">
+            <li {% if message.tags %} class="text-warning" {% endif %}>{{ message }}</li>
+        </ul>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+        <form action="{% url 'user_update_password' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group row mt-2">
+                <label for="password" class="col-sm-4 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="password">
+                </div>
+            </div>
+            <div class="form-group row mt-2">
+                <label for="co-password" class="col-sm-4 col-form-label">Confirm Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="co-password" >
+                </div>
+            </div>
+            <div class="col text-center  mt-2">
+                <button class="w-10 btn btn-success btn-lg" type="submit">Update Password</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-5 border m-2 p-2">
+        <h2>Edit Information</h2>
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+                {% if 'password' in message.tags %}
+                {% else %}
+            <li {% if message.tags %} class="text-warning" {% endif %}>{{ message }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- Inicio de formulario -->
+        <form action="{% url 'user_update_info' %}" method="post">
+            {% csrf_token %}
+            <label for="userid" name="userid" value="{{ user.id }}"></label>
+            <div class="form-group row mt-2">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" name="email" value="{{ user.email }}">
+                </div>
+            </div>
+            <div class="form-group row mt-2">
+                <label for="fname" class="col-sm-4 col-form-label">First Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="fname" value="{{ user.first_name }}">
+                </div>
+            </div>
+            <div class="form-group row mt-2">
+                <label for="lname" class="col-sm-4 col-form-label">Last Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="lname" value="{{ user.last_name }}">
+                </div>
+            </div>
+            <div class="col text-center  mt-2">
+                <button class="w-10 btn btn-success btn-lg" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+<div class="col-10 border m-3 p-2">
+    <h4>Edit Description</h4>
+    <form action="{% url 'user_update_desc'%}" method="post">
+    {% csrf_token %}
+        <textarea name="description" id="description" cols="130" rows="5">{{ user.description }}</textarea>
+        <div class="col text-center mt-2">
+            <button class="w-10 btn btn-success btn-lg" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
